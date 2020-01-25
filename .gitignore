@@ -1,0 +1,6 @@
+README.md
+json-server-notes.md
+npm-dependencies.md
+node_modules/*
+.DS_Store
+.env
