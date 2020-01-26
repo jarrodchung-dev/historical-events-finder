@@ -1,17 +1,24 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const logger = require("morgan");
+require("dotenv").config();
+const PORT = process.env.PORT || 3000;
+
 const path = require("path");
-const PORT = process.env.PORT || 5000;
+const jsonServer = require("json-server");
 
-const app = express();
+const server = jsonServer.create();
+const router = jsonServer.router(path.join(__dirname, "db/db.json"));
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(logger("dev"));
-
-app.listen(PORT, () => {
-  console.log(`Server listening on port ${PORT}!`);
+const middlewares = jsonServer.defaults({
+  static: "./public"
 });
 
-module.exports = app;
+server.use(middlewares);
+server.use(jsonServer.bodyParser);
+
+server.use("/api", router);
+
+server.use(router);
+server.listen(PORT, () => {
+  console.log(`JSON server listening on port ${PORT}!`);
+});
+
+module.exports = server;

@@ -1,10 +1,10 @@
 const path = require("path");
 
 module.exports = {
-  entry: path.join(__dirname, "/client/src/index.jsx"),
+  entry: path.join(__dirname, "client/index.jsx"),
   output: {
     filename: "bundle.js",
-    path: path.join(__dirname + "/client/dist")
+    path: path.join(__dirname, "public")
   },
   module: {
     rules: [
@@ -15,17 +15,10 @@ module.exports = {
           loader: "babel-loader"
         }
       },
+
       {
-        test: /\.css$/,
-        loader: "style-loader"
-      },
-      {
-        test: /\.css$/,
-        loader: "css-loader",
-        query: {
-          modules: true,
-          localIdentName: "[local]"
-        }
+        test: /\.s[ac]ss$/i,
+        use: ["style-loader", "css-loader", "sass-loader"]
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/i,
