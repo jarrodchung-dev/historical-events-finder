@@ -6,7 +6,7 @@ const Search = (props) => {
       <div className="columns">
         <div className="column is-2"></div>
         <div className="column is-8">
-          <form className="form" onSubmit={props.searchEvents}>
+          <form className="form" onSubmit={props.handleSubmit}>
             <label className="label">Search</label>
             <div className="control">
               <input

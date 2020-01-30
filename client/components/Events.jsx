@@ -5,7 +5,7 @@ const Events = (props) => {
     <div>
       {props.events.map((event) => {
         return (
-          <div className="card">
+          <div className="card" key={event.description}>
             <div className="card-content">
               <div className="media-content">
                 <ul>
