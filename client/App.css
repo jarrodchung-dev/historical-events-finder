@@ -1,0 +1,8 @@
+.hero {
+  background-image: url("./images/georgewashington.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-size: 10%;
+  margin: 25px;
+  padding: 25px;
+}

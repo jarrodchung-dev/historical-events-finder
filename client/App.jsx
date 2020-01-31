@@ -3,6 +3,8 @@ import ReactPaginate from "react-paginate";
 import Search from "./components/Search.jsx";
 import Events from "./components/Events.jsx";
 import axios from "axios";
+import "./images/georgewashington.png";
+import "./App.css";
 
 class App extends Component {
   constructor() {
@@ -48,7 +50,6 @@ class App extends Component {
       })
       .catch((err) => console.log(err));
   }
-
   formatDate(date) {
     let newDate = new Date(date);
     let month = newDate.getMonth();
@@ -62,7 +63,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <div className="hero">
+        <div className="hero" id="hero">
           <div className="hero-body">
             <h3 className="title is-3 has-text-centered">Historical Events Finder</h3>
           </div>
@@ -77,20 +78,22 @@ class App extends Component {
             <div className="column is-2"></div>
             <div className="column is-8">
               <Events events={this.state.events} formatDate={this.formatDate} />
-              <div className="box">
-                <ReactPaginate
-                  previousLabel={"Prev"}
-                  nextLabel={"Next"}
-                  breakLabel={"..."}
-                  pageCount={this.state.pageCount}
-                  onPageChange={this.handlePageClick}
-                  containerClassName={"pagination"}
-                  subContainerClassName={"pages pagination"}
-                  activeClassName={"active"}
-                />
+              <div className="card">
+                <div className="card-content">
+                  <ReactPaginate
+                    previousLabel={"Prev"}
+                    nextLabel={"Next"}
+                    breakLabel={"..."}
+                    pageCount={this.state.pageCount}
+                    onPageChange={this.handlePageClick}
+                    containerClassName={"pagination"}
+                    subContainerClassName={"pages pagination"}
+                    activeClassName={"active"}
+                  />
+                </div>
               </div>
+              <div className="column is-2"></div>
             </div>
-            <div className="column is-2"></div>
           </div>
         </div>
       </div>
