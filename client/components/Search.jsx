@@ -2,26 +2,23 @@ import React from "react";
 
 const Search = (props) => {
   return (
-    <div className="container is-fluid">
-      <div className="columns">
-        <div className="column is-2"></div>
-        <div className="column is-8">
-          <form className="form" onSubmit={props.handleSubmit}>
-            <div className="field">
-              <label className="label">Search</label>
-              <div className="control">
-                <input
-                  className="input is-rounded"
-                  name="search"
-                  value={props.search}
-                  onChange={props.handleChange}
-                />
-              </div>
-            </div>
-          </form>
+    <div className="container">
+      <form className="form" onSubmit={props.handleSubmit}>
+        <div className="field">
+          <div className="control has-icons-right">
+            <input
+              className="input is-rounded"
+              name="search"
+              value={props.search}
+              onChange={props.handleChange}
+              placeholder="History is written by the victors..."
+            />
+            <span className="icon is-right">
+              <i className="fas fa-search"></i>
+            </span>
+          </div>
         </div>
-        <div className="column is-2"></div>
-      </div>
+      </form>
     </div>
   );
 };

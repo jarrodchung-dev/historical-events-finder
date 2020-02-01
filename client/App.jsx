@@ -3,7 +3,7 @@ import ReactPaginate from "react-paginate";
 import Search from "./components/Search.jsx";
 import Events from "./components/Events.jsx";
 import axios from "axios";
-import "./images/georgewashington.png";
+import logo from "./images/logo.png";
 import "./App.css";
 
 class App extends Component {
@@ -64,35 +64,40 @@ class App extends Component {
     return (
       <div>
         <div className="hero" id="hero">
-          <div className="hero-body">
-            <h3 className="title is-3 has-text-centered">Historical Events Finder</h3>
-          </div>
+          <img id="logo" src={logo} alt={"logo"} />
         </div>
-        <Search
-          search={this.state.search}
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-        />
-        <div className="container is-fluid">
-          <div className="columns">
-            <div className="column is-2"></div>
-            <div className="column is-8">
-              <Events events={this.state.events} formatDate={this.formatDate} />
-              <div className="card">
-                <div className="card-content">
+        <div className="section">
+          <div className="container">
+            <div className="columns">
+              <div className="column is-1"></div>
+              <div className="column is-10">
+                <Search
+                  search={this.state.search}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                />
+                <br />
+                <Events events={this.state.events} formatDate={this.formatDate} />
+                <div className="buttons has-addons is-centered">
                   <ReactPaginate
                     previousLabel={"Prev"}
                     nextLabel={"Next"}
                     breakLabel={"..."}
+                    breakClassName={"pagination-ellipsis"}
                     pageCount={this.state.pageCount}
+                    marginPagesDisplayed={2}
+                    pageRangeDisplayed={2}
                     onPageChange={this.handlePageClick}
-                    containerClassName={"pagination"}
+                    containerClassName={"pagination is-centered is-rounded"}
                     subContainerClassName={"pages pagination"}
-                    activeClassName={"active"}
+                    previousLinkClassName={"pagination-previous"}
+                    nextLinkClassName={"pagination-next"}
+                    pageLinkClassName={"pagination-link"}
+                    activeLinkClassName={"pagination-link is-current"}
                   />
                 </div>
+                <div className="column is-1"></div>
               </div>
-              <div className="column is-2"></div>
             </div>
           </div>
         </div>
