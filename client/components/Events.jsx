@@ -1,14 +1,18 @@
 import React from "react";
+import Event from "./Event.jsx";
 
 const Events = (props) => {
   return (
     <div className="block">
       {props.events.map((event) => {
         return (
-          <article className="message is-info" key={event.description}>
-            <div className="message-header">{props.formatDate(event.date)}</div>
-            <div className="message-body">{event.description}</div>
-          </article>
+          <Event
+            key={event.id}
+            id={event.id}
+            description={event.description}
+            date={props.formatDate(event.date)}
+            favoriteEvent={props.favoriteEvent}
+          />
         );
       })}
     </div>

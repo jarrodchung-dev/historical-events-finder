@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ReactPaginate from "react-paginate";
+import NavMenu from "./components/NavMenu.jsx";
 import Search from "./components/Search.jsx";
 import Events from "./components/Events.jsx";
 import axios from "axios";
@@ -20,6 +21,7 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handlePageClick = this.handlePageClick.bind(this);
     this.formatDate = this.formatDate.bind(this);
+    this.favoriteEvent = this.favoriteEvent.bind(this);
   }
   handleChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -54,15 +56,20 @@ class App extends Component {
     let newDate = new Date(date);
     let month = newDate.getMonth();
     let day = newDate.getDay();
-    let year = newDate.getYear();
+    let year = newDate.getFullYear();
     if (year.toString().split("")[0] === "-") {
       year = year.toString().substring(1) + " B.C.";
     }
     return `Month: ${month || "N/A"} | Day: ${day || "N/A"} | Year: ${year || "N/A"}`;
   }
+  favoriteEvent(eventId) {
+    console.log(eventId);
+    this.setState({ favoritedEventId: eventId });
+  }
   render() {
     return (
       <div>
+        <NavMenu />
         <div className="hero" id="hero">
           <img id="logo" src={logo} alt={"logo"} />
         </div>
@@ -77,7 +84,11 @@ class App extends Component {
                   handleSubmit={this.handleSubmit}
                 />
                 <br />
-                <Events events={this.state.events} formatDate={this.formatDate} />
+                <Events
+                  events={this.state.events}
+                  formatDate={this.formatDate}
+                  favoriteEvent={this.favoriteEvent}
+                />
                 <div className="buttons has-addons is-centered">
                   <ReactPaginate
                     previousLabel={"Prev"}
